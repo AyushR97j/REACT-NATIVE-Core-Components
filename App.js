@@ -1,29 +1,25 @@
-import { View, Button, Image, Text, Pressable } from 'react-native'
+import { useState } from 'react';
+import { View, Button, Text, Modal } from 'react-native'
 const logoImg = require("./assets/adaptive-icon.png")
 
 export default function App() {
+  const [isModalVisible, setIsModalVisible] = useState(false);
   return (
   <View style={ { flex: 1, backgroundColor: "plum", padding: 60}}>
-    <Button title="press" onPress={ () => console.log("Button Pressed")}
+    <Button title="press" onPress={ () => setIsModalVisible(true)}
     color="midnightblue"
     />
-    <Pressable onPress={ () => console.log("Image Pressed")}
-    onLongPress={ ()=> console.log("image long pressed")}>
-      <Image source={logoImg} style={ {height: 300, width: 300}}/>
-    </Pressable>
-    <Pressable onPress={ () => console.log("Text Pressed")}>
-      <Text>
-      lorem ipsum dolor sit amet, consectetur adip lorem ipsum  
-      lorem ipsum dolor sit amet, consectetur adip lorem ipsum  
-      lorem ipsum dolor sit amet, consectetur adip lorem ipsum  
-      lorem ipsum dolor sit amet, consectetur adip lorem ipsum  
-      lorem ipsum dolor sit amet, consectetur adip lorem ipsum  
-      lorem ipsum dolor sit amet, consectetur adip lorem ipsum  
-      lorem ipsum dolor sit amet, consectetur adip lorem ipsum  
-      lorem ipsum dolor sit amet, consectetur adip lorem ipsum  
-      lorem ipsum dolor sit amet, consectetur adip lorem ipsum  
-      </Text>
-    </Pressable>
+    <Modal 
+      visible={isModalVisible}
+      onRequestClose={ () => setIsModalVisible(false)}
+      animationType='slide'
+      // presentationStyle='formSheet'
+    >
+      <View style={ { flex: 1, backgroundColor: "lightblue", padding: 60}}>
+        <Text>Modal content</Text>
+        <Button title="close" color="midnightblue" onPress={ () => setIsModalVisible(false)}/>
+      </View>
+    </Modal>
     
   </View>
   );
