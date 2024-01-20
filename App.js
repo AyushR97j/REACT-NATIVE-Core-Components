@@ -1,15 +1,28 @@
-import { useState } from 'react';
-import { View, ActivityIndicator, Button } from 'react-native'
+import { View, Alert, Button } from 'react-native'
 
 export default function App() {
-  const [ToggleActivityIndicator, setToggleActivityIndicator] = useState(false)
   return (
   <View style={ { flex: 1, backgroundColor: "plum", padding: 60}}>
-    <Button onPress={()=>setToggleActivityIndicator(!ToggleActivityIndicator)} title="Hide/Show Loader"/>
-    <ActivityIndicator animating={ToggleActivityIndicator} />
-    <ActivityIndicator size="large" animating={ToggleActivityIndicator} />
-    <ActivityIndicator size="large" color="midnightblue" animating={ToggleActivityIndicator} />
-    <ActivityIndicator size="extralarge" color="white" animating={ToggleActivityIndicator} />
+    <Button title="alert 1" onPress={ () => Alert.alert("Alert activated")} />
+    <Button title="alert 2" onPress={ () => Alert.alert("Alert activated 2", "message")} />
+    <Button
+      title="Alert 3"
+      onPress={ () => Alert.alert("Invalid data", "DOB INCORRECT", [
+        {
+          text: "Cancel",
+          onPress : () => console.log("Cancel Pressed"),
+        },
+        {
+          text: "OK",
+          onPress: () => console.log("OK Pressed"),
+        },
+        {
+          text: "Close",
+          onPress: () => console.log("Close Pressed"),
+        },
+      ])
+      }
+    />
   </View>
   );
 }
